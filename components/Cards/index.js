@@ -18,6 +18,7 @@
 // </div>
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
+const cardContainer = document.querySelector(".cards-container");
 function Card(article) {
     const card = document.createElement('div');
     const headline = document.createElement('div');
@@ -37,11 +38,40 @@ function Card(article) {
     author.classList.add('author');
     imageContainer.classList.add('img-container');
 
-    headline.textContent = "SMARCH 28, 2019";
-    image.src = "#";
+    headline.textContent = article.headline;
+    image.src = article.authorPhoto;
     authorName.textContent = "By ";
+    authorName.textContent += article.authorName;
     // console.log(header);
+
     return card;
 }
-console.log(Card({}))
+// console.log(Card({}))
 // headerContainer.appendChild(Header());
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+    .then( response => {
+        for(language in response.data.articles){
+            const articles = response.data.articles[language];
+            // console.log(aritcles)
+            articles.forEach(item => {
+                cardContainer.appendChild(Card(item));
+                // Card(item);
+            })
+        }
+        // debugger
+        // console.log(response.data);
+        // const shortHand = Object.keys(response.data.articles);//getting keys
+        // shortHand.forEach(item =>{//attatch the key to the response
+        //     // response.data.articles.item
+        //     // shortHand.item
+        //     console.log(item);
+        //     // item.forEach(innerItem =>{
+        //     //     console.log(innerItem.headline);
+        //     // })
+        // })
+        // deal with the response data in here
+        // console.log(shortHand);
+    })
+    .catch( err => {
+        console.log("Error:", err);
+    })
