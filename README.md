@@ -30,13 +30,23 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. What is the DOM?
 
+Document object model, a representation of the website.
+
 2. What is an event?
+
+typically user interaction or caused by user interaction i.e. a click or scroll, could also be the end of a loading sequence.
 
 3. What is an event listener?
 
+tracks user interaction
+
 4. Why would we convert a NodeList into an Array?
 
+So we can use things like .map() and .filter() since NodeLists are array-like but not actually arrays.
+
 5. What is a component?
+
+a smaller bit of code that could be used for different things. Reusable function.
 
 ### Git Set up
 
